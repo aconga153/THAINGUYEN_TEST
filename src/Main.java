@@ -1,31 +1,13 @@
+import java.util.ArrayList;
+import java.util.Random;
 public class Main {
     public static void main(String[] args) {
-
-        //thread 1
-    new Thread(()-> {
-        for (int i = 0; i < 10; i++) {
-            System.out.println("a ");
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }).start();
-
-        //thread 2
-        new Thread(()-> {
-            for (int i = 0; i < 10; i++) {
-                System.out.println("b ");
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+        Student obj = new Student();
+        new Thread(() -> {
+            obj.printPoint();
         }).start();
-
-
-        System.out.println("main end");
+        new Thread(() -> {
+            obj.printPoint();
+        }).start();
     }
 }
