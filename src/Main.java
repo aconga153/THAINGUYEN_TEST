@@ -1,15 +1,15 @@
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class Main {
     public static void main(String[] args) {
-        Account acc = new Account();
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-        new Thread(()->{
-            acc.sub(50000);
-        }).start();
+        for (int i = 1; i <= 10; i++) {
+            MyRunnable myRunnable = new MyRunnable("Runnable " + i);
+            executorService.execute(myRunnable);
+        }
 
-        new Thread(()->{
-            acc.add(100000);
-        }).start();
+        executorService.shutdown();
     }
 }
